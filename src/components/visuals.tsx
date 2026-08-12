@@ -353,124 +353,168 @@ export function ProjectMockup({ kind, className = "" }: { kind: "mbti" | "salary
 }
 
 function MbtiMock({ className = "" }: { className?: string }) {
-  const dims = [
-    ["E", "I", 72],
-    ["S", "N", 35],
-    ["T", "F", 60],
-    ["J", "P", 80],
+  const dims: [string, string, number][] = [
+    ["E", "I", 70],
+    ["S", "N", 65],
+    ["T", "F", 75],
+    ["J", "P", 62],
   ];
   return (
-    <svg viewBox="0 0 600 360" className={className} aria-label="MBTI 小程序界面示意">
+    <svg viewBox="0 0 600 360" className={className} aria-label="人森梦 MBTI 小程序 · 真实性格结果卡">
       <rect width="600" height="360" rx="24" fill="#0B1220" />
       <rect width="600" height="360" rx="24" fill="none" stroke={C.line} />
       {/* phone */}
-      <rect x="40" y="40" width="150" height="280" rx="22" fill="#11192B" stroke={C.line} />
-      <rect x="95" y="54" width="40" height="6" rx="3" fill={C.dim} />
-      <text x="115" y="100" textAnchor="middle" fontFamily="'Noto Sans SC'" fontSize="14" fill={C.text}>
-        名人性格
+      <rect x="36" y="36" width="160" height="288" rx="22" fill="#11192B" stroke={C.line} />
+      <rect x="96" y="50" width="40" height="6" rx="3" fill={C.dim} />
+      <text x="116" y="92" textAnchor="middle" fontFamily="'Noto Sans SC'" fontSize="13" fill={C.dim}>
+        名人性格测试
       </text>
-      <circle cx="115" cy="160" r="34" fill="none" stroke={C.fuchsia} strokeWidth="3" />
-      <text x="115" y="166" textAnchor="middle" fontFamily="'Kanit'" fontSize="16" fill={C.fuchsia}>
+      <circle cx="116" cy="150" r="34" fill="none" stroke={C.fuchsia} strokeWidth="3" />
+      <text x="116" y="158" textAnchor="middle" fontFamily="'Kanit'" fontSize="20" fontWeight="800" fill={C.fuchsia}>
         INFP
       </text>
-      <rect x="75" y="210" width="80" height="14" rx="7" fill={C.orange} opacity="0.8" />
-      <rect x="75" y="234" width="60" height="14" rx="7" fill={C.violet} opacity="0.8" />
-      <rect x="75" y="258" width="70" height="14" rx="7" fill={C.cyan} opacity="0.8" />
-      {/* bars */}
-      <g transform="translate(230,50)">
-        <text x="0" y="0" fontFamily="'Kanit'" fontSize="16" fill={C.text}>
-          MBTI Dimensions
-        </text>
-        {dims.map(([a, b, v], i) => (
-          <g key={i} transform={`translate(0,${30 + i * 60})`}>
-            <rect x="0" y="10" width="320" height="16" rx="8" fill={C.line} />
-            <rect x="0" y="10" width={320 * (v as number) / 100} height="16" rx="8" fill={C.fuchsia} />
-            <text x="0" y="6" fontFamily="'Kanit'" fontSize="13" fill={C.text}>
-              {a as string}
-            </text>
-            <text x="320" y="6" textAnchor="end" fontFamily="'Kanit'" fontSize="13" fill={C.text}>
-              {b as string}
-            </text>
-          </g>
-        ))}
-      </g>
+      <text x="116" y="200" textAnchor="middle" fontFamily="'Noto Sans SC'" fontSize="14" fill={C.text}>
+        调停者
+      </text>
+      {["理想", "共情", "探索"].map((t, i) => (
+        <g key={t} transform={`translate(${60 + i * 42},222)`}>
+          <rect width="38" height="20" rx="10" fill="#1B2540" />
+          <text x="19" y="14" textAnchor="middle" fontFamily="'Noto Sans SC'" fontSize="11" fill={C.text}>
+            {t}
+          </text>
+        </g>
+      ))}
+      <rect x="56" y="288" width="120" height="22" rx="11" fill="#1B1228" stroke={C.fuchsia} strokeOpacity="0.4" />
+      <text x="116" y="303" textAnchor="middle" fontFamily="'Noto Sans SC'" fontSize="11" fill={C.fuchsia}>
+        12,101 位用户已生成
+      </text>
+      {/* right: dimensions */}
+      <text x="228" y="52" fontFamily="'Noto Sans SC'" fontSize="16" fill={C.text}>
+        你的性格画像
+      </text>
+      {dims.map(([a, b, v], i) => (
+        <g key={a + b} transform={`translate(228,${74 + i * 56})`}>
+          <text x="0" y="2" fontFamily="'Kanit'" fontSize="13" fill={C.text}>
+            {a}
+          </text>
+          <rect x="26" y="-6" width="280" height="14" rx="7" fill={C.line} />
+          <rect x="26" y="-6" width={(280 * v) / 100} height="14" rx="7" fill="url(#mbtiGrad)" />
+          <text x="306" y="2" textAnchor="end" fontFamily="'Kanit'" fontSize="13" fill={C.text}>
+            {b}
+          </text>
+          <text x="318" y="2" fontFamily="'Kanit'" fontSize="12" fill={C.dim}>
+            {v}%
+          </text>
+        </g>
+      ))}
+      <defs>
+        <linearGradient id="mbtiGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor={C.violet} />
+          <stop offset="100%" stopColor={C.fuchsia} />
+        </linearGradient>
+      </defs>
     </svg>
   );
 }
 
 function SalaryMock({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 600 360" className={className} aria-label="薪资预测系统大屏示意">
+    <svg viewBox="0 0 600 360" className={className} aria-label="大数据岗位薪资预测系统 · 预测卡">
       <rect width="600" height="360" rx="24" fill="#0B1220" />
       <rect width="600" height="360" rx="24" fill="none" stroke={C.line} />
-      <text x="30" y="40" fontFamily="'Kanit'" fontSize="18" fill={C.text}>
-        Salary Prediction · 46,000 条
+      <text x="30" y="44" fontFamily="'Noto Sans SC'" fontSize="16" fill={C.text}>
+        大数据岗位薪资预测
       </text>
-      {/* line + bars */}
-      <polyline points="40,300 130,250 220,270 310,190 400,210 490,140 560,170" fill="none" stroke={C.cyan} strokeWidth="3" />
-      {[60, 110, 80, 150, 120, 180, 150].map((h, i) => (
-        <rect key={i} x={60 + i * 75} y={320 - h} width="36" height={h} rx="5" fill={C.blue} opacity="0.85" />
+      <text x="30" y="74" fontFamily="'Noto Sans SC'" fontSize="12" fill={C.dim}>
+        输入条件
+      </text>
+      {["数据分析师", "一线城市", "3 年经验"].map((t, i) => (
+        <g key={t} transform={`translate(${30 + i * 152},88)`}>
+          <rect width="140" height="34" rx="17" fill="#0E1A2E" stroke={C.line} />
+          <text x="70" y="22" textAnchor="middle" fontFamily="'Noto Sans SC'" fontSize="13" fill={C.text}>
+            {t}
+          </text>
+        </g>
       ))}
-      {/* metric chips */}
-      <g transform="translate(380,250)">
-        <rect width="170" height="44" rx="10" fill="#0E1A2E" stroke={C.line} />
-        <text x="14" y="28" fontFamily="'Kanit'" fontSize="16" fill={C.cyan}>
-          R² = 0.884
+      <text x="30" y="168" fontFamily="'Noto Sans SC'" fontSize="12" fill={C.dim}>
+        预测结果
+      </text>
+      <text x="30" y="206" fontFamily="'Kanit'" fontSize="26" fontWeight="800" fill={C.cyan}>
+        ¥14,200 – ¥18,600
+      </text>
+      <rect x="30" y="224" width="300" height="12" rx="6" fill={C.line} />
+      <rect x="30" y="224" width="210" height="12" rx="6" fill="url(#salaryGrad)" />
+      <g transform="translate(30,290)">
+        <rect width="540" height="44" rx="10" fill="#0E1A2E" stroke={C.line} />
+        <text x="18" y="28" fontFamily="'Kanit'" fontSize="14" fill={C.text}>
+          R² 0.884 · MAE 1,453 元 · 46,000 条训练数据 · Stacking 融合
         </text>
       </g>
-      <g transform="translate(40,250)">
-        <rect width="170" height="44" rx="10" fill="#0E1A2E" stroke={C.line} />
-        <text x="14" y="28" fontFamily="'Kanit'" fontSize="16" fill={C.orange}>
-          MAE = 1,453
-        </text>
-      </g>
+      <defs>
+        <linearGradient id="salaryGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor={C.cyan} />
+          <stop offset="100%" stopColor={C.blue} />
+        </linearGradient>
+      </defs>
     </svg>
   );
 }
 
 function MedicalMock({ className = "" }: { className?: string }) {
+  const feats: [string, number][] = [
+    ["肿瘤半径", 120],
+    ["纹理熵", 96],
+    ["对称性", 72],
+    ["凹点", 56],
+  ];
   return (
-    <svg viewBox="0 0 600 360" className={className} aria-label="乳腺癌诊断系统示意">
+    <svg viewBox="0 0 600 360" className={className} aria-label="乳腺癌智能诊断系统 · 报告卡">
       <rect width="600" height="360" rx="24" fill="#0B1220" />
       <rect width="600" height="360" rx="24" fill="none" stroke={C.line} />
-      <text x="30" y="40" fontFamily="'Kanit'" fontSize="18" fill={C.text}>
-        Diagnosis Report
+      <text x="30" y="44" fontFamily="'Noto Sans SC'" fontSize="16" fill={C.text}>
+        乳腺癌智能诊断报告
       </text>
-      {/* heatmap grid */}
-      <g transform="translate(40,60)">
-        {Array.from({ length: 6 }).map((_, r) =>
-          Array.from({ length: 10 }).map((_, c) => {
-            const v = (Math.sin(r * 1.3 + c * 0.7) + 1) / 2;
-            return (
-              <rect
-                key={`${r}-${c}`}
-                x={c * 26}
-                y={r * 26}
-                width="22"
-                height="22"
-                rx="4"
-                fill={C.mint}
-                opacity={(0.15 + v * 0.7).toFixed(2)}
-              />
-            );
-          })
-        )}
-      </g>
+      <text x="30" y="74" fontFamily="'Noto Sans SC'" fontSize="12" fill={C.dim}>
+        输入特征
+      </text>
+      {feats.map(([f, w], i) => (
+        <g key={f} transform={`translate(30,${92 + i * 36})`}>
+          <text x="0" y="12" fontFamily="'Noto Sans SC'" fontSize="13" fill={C.text}>
+            {f}
+          </text>
+          <rect x="92" y="4" width="150" height="10" rx="5" fill={C.line} />
+          <rect x="92" y="4" width={w} height="10" rx="5" fill={C.mint} opacity="0.8" />
+        </g>
+      ))}
       {/* gauge */}
-      <g transform="translate(420,70)">
-        <path d="M10 100 A 90 90 0 0 1 170 100" fill="none" stroke={C.line} strokeWidth="14" strokeLinecap="round" />
-        <path d="M10 100 A 90 90 0 0 1 140 40" fill="none" stroke={C.mint} strokeWidth="14" strokeLinecap="round" />
-        <text x="90" y="86" textAnchor="middle" fontFamily="'Kanit'" fontSize="26" fontWeight="800" fill={C.text}>
-          97%
-        </text>
-        <text x="90" y="112" textAnchor="middle" fontFamily="'Kanit'" fontSize="12" fill={C.text} opacity="0.7">
-          Accuracy
+      <circle cx="468" cy="150" r="52" fill="none" stroke={C.line} strokeWidth="12" />
+      <circle
+        cx="468"
+        cy="150"
+        r="52"
+        fill="none"
+        stroke={C.mint}
+        strokeWidth="12"
+        strokeLinecap="round"
+        strokeDasharray="307 327"
+        transform="rotate(-90 468 150)"
+      />
+      <text x="468" y="146" textAnchor="middle" fontFamily="'Kanit'" fontSize="28" fontWeight="800" fill={C.mint}>
+        94%
+      </text>
+      <text x="468" y="170" textAnchor="middle" fontFamily="'Noto Sans SC'" fontSize="12" fill={C.text}>
+        恶性样本召回
+      </text>
+      <g transform="translate(360,232)">
+        <rect width="216" height="34" rx="10" fill="#0E1A2E" stroke={C.line} />
+        <text x="14" y="22" fontFamily="'Kanit'" fontSize="14" fill={C.mint}>
+          97% 准确率 · 0.96 AUC
         </text>
       </g>
-      <g transform="translate(420,210)">
-        <rect width="150" height="40" rx="10" fill="#0E1A2E" stroke={C.line} />
-        <text x="14" y="26" fontFamily="'Kanit'" fontSize="15" fill={C.mint}>
-          AUC = 0.96
+      <g transform="translate(30,300)">
+        <rect width="540" height="34" rx="10" fill="#0E1A2E" stroke={C.line} />
+        <text x="18" y="22" fontFamily="'Noto Sans SC'" fontSize="13" fill={C.dim}>
+          初筛辅助 · 非临床诊断依据
         </text>
       </g>
     </svg>

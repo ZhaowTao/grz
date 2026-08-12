@@ -75,6 +75,7 @@ export interface Project {
   metrics: { value: string; label: string }[];
   accent: string; // tailwind gradient classes
   mockup: "mbti" | "salary" | "medical";
+  cta?: { label: string; note?: string };
 }
 
 export const projects: Project[] = [
@@ -97,6 +98,7 @@ export const projects: Project[] = [
     ],
     accent: "from-fuchsia-500 via-pink-500 to-orange-400",
     mockup: "mbti",
+    cta: { label: "微信搜『人森梦』体验", note: "小程序已上线 · 12,101 用户在用" },
   },
   {
     no: "02",

@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import FadeIn from "./FadeIn";
-import LiveProjectButton from "./LiveProjectButton";
 import { ProjectMockup } from "./visuals";
 import { projects } from "../data/resume";
 import type { Project } from "../data/resume";
@@ -68,7 +67,20 @@ function ProjectCard({
                   {project.status}
                 </span>
               </div>
-              <LiveProjectButton label="案例详情" />
+              {project.cta ? (
+                <div className="text-right">
+                  <span className="inline-flex items-center gap-2 rounded-full border-2 border-[#D7E2EA] px-5 py-2.5 text-[#D7E2EA] text-xs sm:text-sm font-semibold">
+                    {project.cta.label}
+                  </span>
+                  {project.cta.note && (
+                    <div className="mt-2 text-[#6B7A90] text-[0.7rem] sm:text-[0.78rem]">
+                      {project.cta.note}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <span />
+              )}
             </div>
 
             <h3 className="text-[#D7E2EA] font-black tracking-tight text-[clamp(1.2rem,2.6vw,2.2rem)] mb-2">
