@@ -275,6 +275,46 @@ export function GlyphCard({ variant }: { variant: number }) {
   return <CardFrame ring={color + "55"}>{GLYPHS[idx](color)}</CardFrame>;
 }
 
+/* ----------------------------- Skill cards ----------------------------- */
+const SKILL_CARD_BG = "linear-gradient(150deg,#0E1626 0%,#0A0F1C 100%)";
+
+export function SkillCard({
+  no,
+  title,
+  tags,
+  accent,
+}: {
+  no: string;
+  title: string;
+  tags: string[];
+  accent: string;
+}) {
+  return (
+    <div
+      className="w-[420px] h-[280px] rounded-2xl flex-shrink-0 overflow-hidden relative p-6 flex flex-col"
+      style={{ background: SKILL_CARD_BG, boxShadow: `inset 0 0 0 1px ${accent}55` }}
+    >
+      <div className="absolute left-0 top-0 h-full w-[3px]" style={{ background: accent }} />
+      <div className="flex items-baseline gap-3">
+        <span className="font-black text-2xl leading-none" style={{ color: accent, fontFamily: "'Kanit', sans-serif" }}>
+          {no}
+        </span>
+        <h3 className="hero-heading font-black text-[20px] leading-tight">{title}</h3>
+      </div>
+      <div className="mt-5 flex flex-wrap gap-2 content-start">
+        {tags.map((t) => (
+          <span
+            key={t}
+            className="text-[11px] leading-none px-2.5 py-1.5 rounded-full border border-[#263043] text-[#9FB0C3] bg-white/[0.02]"
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ----------------------------- About decor ----------------------------- */
 export function DecorOrb({ className = "", color = C.cyan }: { className?: string; color?: string }) {
   return (
