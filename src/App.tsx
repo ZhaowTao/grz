@@ -1,7 +1,7 @@
 import HeroSection from "./components/HeroSection";
-import MarqueeSection from "./components/MarqueeSection";
 import AboutSection from "./components/AboutSection";
-import ServicesSection from "./components/ServicesSection";
+import MarqueeSection from "./components/MarqueeSection";
+import SkillMapSection from "./components/SkillMapSection";
 import ProjectsSection from "./components/ProjectsSection";
 import ResearchSection from "./components/ResearchSection";
 import OpenSourceSection from "./components/OpenSourceSection";
@@ -13,9 +13,9 @@ export default function App() {
   return (
     <div style={{ overflowX: "clip" }}>
       <HeroSection />
-      <MarqueeSection />
       <AboutSection />
-      <ServicesSection />
+      <MarqueeSection />
+      <SkillMapSection />
       <ProjectsSection />
       <ResearchSection />
       <OpenSourceSection />

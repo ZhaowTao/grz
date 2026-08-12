@@ -38,6 +38,7 @@ export default function MarqueeSection() {
   return (
     <section
       ref={sectionRef}
+      id="services"
       className="bg-[#0C0C0C] pt-16 sm:pt-20 md:pt-24 pb-10 overflow-hidden"
     >
       <div className="text-center mb-8 sm:mb-12">
