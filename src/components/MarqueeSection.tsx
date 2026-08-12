@@ -2,15 +2,12 @@ import { useEffect, useRef } from "react";
 import { SkillCard } from "./visuals";
 import { skills } from "../data/resume";
 
-const ACCENTS = [
-  "#E23FB5", // 01 AI 应用开发
-  "#22D3EE", // 02 编程语言
-  "#34D399", // 03 数据分析与建模
-  "#8B5CF6", // 04 数据可视化
-  "#3B82F6", // 05 数据采集与存储
-  "#FB923C", // 06 大数据
-  "#E23FB5", // 07 开发与工具
-  "#34D399", // 08 英语能力
+// 滚动带只精选 4 个核心类目，避免卡片过密；完整清单见 ServicesSection（#services）
+const FEATURED = [
+  { ...skills[0], accent: "#E23FB5" }, // 01 AI 应用开发
+  { ...skills[2], accent: "#34D399" }, // 03 数据分析与建模
+  { ...skills[1], accent: "#22D3EE" }, // 02 编程语言
+  { ...skills[3], accent: "#8B5CF6" }, // 04 数据可视化
 ];
 
 export default function MarqueeSection() {
@@ -18,8 +15,8 @@ export default function MarqueeSection() {
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
 
-  const row1Items = skills.slice(0, 4);
-  const row2Items = skills.slice(4);
+  const row1Items = FEATURED.slice(0, 2);
+  const row2Items = FEATURED.slice(2);
   const row1 = [...row1Items, ...row1Items, ...row1Items];
   const row2 = [...row2Items, ...row2Items, ...row2Items];
 
@@ -53,7 +50,7 @@ export default function MarqueeSection() {
           Skills · Stack · Tools
         </p>
         <h2 className="hero-heading font-black uppercase mt-3 text-[clamp(2rem,7vw,64px)] leading-none">
-          我的技能栈
+          技能栈
         </h2>
       </div>
       <div
@@ -67,7 +64,7 @@ export default function MarqueeSection() {
             no={s.no}
             title={s.title}
             tags={s.tags}
-            accent={ACCENTS[Number(s.no) - 1]}
+            accent={s.accent}
           />
         ))}
       </div>
@@ -82,7 +79,7 @@ export default function MarqueeSection() {
             no={s.no}
             title={s.title}
             tags={s.tags}
-            accent={ACCENTS[Number(s.no) - 1]}
+            accent={s.accent}
           />
         ))}
       </div>
