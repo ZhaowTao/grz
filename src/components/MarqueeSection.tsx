@@ -2,21 +2,16 @@ import { useEffect, useRef } from "react";
 import { SkillCard } from "./visuals";
 import { skills } from "../data/resume";
 
-// 滚动带只精选 4 个核心类目，避免卡片过密；完整清单见 ServicesSection（#services）
-const FEATURED = [
-  { ...skills[0], accent: "#E23FB5" }, // 01 AI 应用开发
-  { ...skills[2], accent: "#34D399" }, // 03 数据分析与建模
-  { ...skills[1], accent: "#22D3EE" }, // 02 编程语言
-  { ...skills[3], accent: "#8B5CF6" }, // 04 数据可视化
-];
+// 4 个合并后的核心类目（数据源见 resume.ts，已涵盖原 8 类全部技能）
+const ACCENTS = ["#E23FB5", "#34D399", "#22D3EE", "#8B5CF6"];
 
 export default function MarqueeSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
 
-  const row1Items = FEATURED.slice(0, 2);
-  const row2Items = FEATURED.slice(2);
+  const row1Items = skills.slice(0, 2);
+  const row2Items = skills.slice(2);
   const row1 = [...row1Items, ...row1Items, ...row1Items];
   const row2 = [...row2Items, ...row2Items, ...row2Items];
 
@@ -64,7 +59,7 @@ export default function MarqueeSection() {
             no={s.no}
             title={s.title}
             tags={s.tags}
-            accent={s.accent}
+            accent={ACCENTS[Number(s.no) - 1]}
           />
         ))}
       </div>
@@ -79,7 +74,7 @@ export default function MarqueeSection() {
             no={s.no}
             title={s.title}
             tags={s.tags}
-            accent={s.accent}
+            accent={ACCENTS[Number(s.no) - 1]}
           />
         ))}
       </div>
