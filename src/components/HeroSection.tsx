@@ -42,7 +42,7 @@ export default function HeroSection() {
         </p>
       </div>
 
-      <div className="absolute left-1/2 -translate-x-1/2 z-10 top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0 w-[280px] sm:w-[360px] md:w-[440px] lg:w-[520px] opacity-95">
+      <div className="absolute left-1/2 -translate-x-1/2 z-10 top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-8 md:bottom-14 lg:bottom-20 w-[260px] sm:w-[320px] md:w-[380px] lg:w-[420px] opacity-95">
         <FadeIn delay={0.6} y={30}>
           <Magnet
             padding={150}
@@ -53,22 +53,50 @@ export default function HeroSection() {
             <img
               src="/avatar-3d.png"
               alt="赵文涛 3D 头像"
-              className="w-full h-auto max-h-[55vh] object-contain drop-shadow-[0_12px_40px_rgba(182,0,168,0.28)]"
+              className="w-full h-auto max-h-[52vh] sm:max-h-[48vh] object-contain drop-shadow-[0_12px_40px_rgba(182,0,168,0.28)]"
               style={{ willChange: "transform" }}
             />
           </Magnet>
         </FadeIn>
       </div>
 
-      <div className="relative z-20 px-6 md:px-10 pb-7 sm:pb-8 md:pb-10">
+      <div className="relative z-20 px-6 md:px-10 pb-8 sm:pb-10 md:pb-14">
         <FadeIn delay={0.35} y={20}>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-7">
+          {/* 大屏：左右两组贴边，避免遮挡中间头像 */}
+          <div className="hidden lg:flex justify-between items-end mb-9">
+            <div className="flex gap-10">
+              {profile.stats.slice(0, 2).map((s) => (
+                <div key={s.label} className="text-left">
+                  <div className="hero-heading font-black text-[clamp(1.3rem,2.6vw,2.2rem)] leading-none">
+                    {s.value}
+                  </div>
+                  <div className="text-[#9FB0C3] text-[clamp(0.55rem,1.05vw,0.8rem)] mt-1.5 leading-snug">
+                    {s.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex gap-10">
+              {profile.stats.slice(2).map((s) => (
+                <div key={s.label} className="text-left">
+                  <div className="hero-heading font-black text-[clamp(1.3rem,2.6vw,2.2rem)] leading-none">
+                    {s.value}
+                  </div>
+                  <div className="text-[#9FB0C3] text-[clamp(0.55rem,1.05vw,0.8rem)] mt-1.5 leading-snug">
+                    {s.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* 小屏：保持 4 列网格 */}
+          <div className="lg:hidden grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-5 sm:gap-8 md:gap-14 mb-9">
             {profile.stats.map((s) => (
               <div key={s.label} className="text-center sm:text-left">
-                <div className="hero-heading font-black text-[clamp(1.4rem,3.4vw,2.6rem)] leading-none">
+                <div className="hero-heading font-black text-[clamp(1.3rem,3.2vw,2.4rem)] leading-none">
                   {s.value}
                 </div>
-                <div className="text-[#9FB0C3] text-[clamp(0.6rem,1.3vw,0.85rem)] mt-1 leading-snug">
+                <div className="text-[#9FB0C3] text-[clamp(0.55rem,1.2vw,0.8rem)] mt-1.5 leading-snug">
                   {s.label}
                 </div>
               </div>
@@ -77,7 +105,7 @@ export default function HeroSection() {
         </FadeIn>
         <div className="flex justify-between items-end gap-4">
           <FadeIn delay={0.5} y={20}>
-            <p className="text-[#D7E2EA] font-light tracking-wide leading-snug text-[clamp(0.75rem,1.4vw,1.1rem)] max-w-[260px] sm:max-w-[360px]">
+            <p className="hero-heading font-medium tracking-[0.18em] leading-relaxed text-[clamp(0.65rem,1.15vw,0.95rem)] max-w-[280px] sm:max-w-[380px]">
               {profile.tagline}
             </p>
           </FadeIn>
