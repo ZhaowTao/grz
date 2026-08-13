@@ -45,7 +45,7 @@ export default function HeroSection() {
           aria-controls="mobile-nav"
           aria-label={open ? "关闭菜单" : "打开菜单"}
           onClick={() => setOpen((o) => !o)}
-          className="md:hidden ml-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#22D3EE]/40 bg-[#0B0F1A]/90 text-[#D7E2EA] text-xl shadow-[0_0_0_1px_rgba(34,211,238,0.15)] transition-opacity hover:opacity-80"
+          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border-2 border-[#22D3EE] bg-[#0B0F1A] text-[#D7E2EA] text-xl shadow-[0_0_16px_rgba(34,211,238,0.25)] transition-opacity hover:opacity-80"
         >
           {open ? "✕" : "☰"}
         </button>
