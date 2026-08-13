@@ -87,7 +87,7 @@ export default function HeroSection() {
             inactiveTransition="transform 0.6s ease-in-out"
           >
             <img
-              src="/avatar-3d.png"
+              src={`${import.meta.env.BASE_URL}avatar-3d.png`}
               alt="赵文涛 3D 头像"
               className="w-full h-auto max-h-[52vh] sm:max-h-[48vh] object-contain drop-shadow-[0_12px_40px_rgba(182,0,168,0.28)]"
               style={{ willChange: "transform" }}
