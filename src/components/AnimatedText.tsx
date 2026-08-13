@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import type { MotionValue } from "framer-motion";
 
 interface AnimatedTextProps {
@@ -9,6 +9,7 @@ interface AnimatedTextProps {
 
 export default function AnimatedText({ text, className }: AnimatedTextProps) {
   const ref = useRef<HTMLParagraphElement>(null);
+  const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start 0.8", "end 0.2"],
@@ -23,6 +24,7 @@ export default function AnimatedText({ text, className }: AnimatedTextProps) {
           progress={scrollYProgress}
           range={[i / chars.length, (i + 1) / chars.length]}
           char={char}
+          reduce={reduce}
         />
       ))}
     </p>
@@ -33,12 +35,15 @@ function Char({
   progress,
   range,
   char,
+  reduce,
 }: {
   progress: MotionValue<number>;
   range: [number, number];
   char: string;
+  reduce: boolean | null;
 }) {
-  const opacity = useTransform(progress, range, [0.2, 1]);
+  const rawOpacity = useTransform(progress, range, [0.55, 1]);
+  const opacity = reduce ? 1 : rawOpacity;
   if (char === " ") {
     return <span>&nbsp;</span>;
   }

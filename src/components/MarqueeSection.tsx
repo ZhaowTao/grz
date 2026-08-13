@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useReducedMotion } from "framer-motion";
 import { SkillCard } from "./visuals";
 import { skills } from "../data/resume";
 
@@ -15,7 +16,10 @@ export default function MarqueeSection() {
   const row1 = [...row1Items, ...row1Items, ...row1Items];
   const row2 = [...row2Items, ...row2Items, ...row2Items];
 
+  const reduce = useReducedMotion();
   useEffect(() => {
+    if (reduce) return; // 减动偏好：卡片保持静态排列，不做滚动联动位移
+    let raf = 0;
     const update = () => {
       const section = sectionRef.current;
       const row1El = row1Ref.current;
@@ -26,14 +30,19 @@ export default function MarqueeSection() {
       row1El.style.transform = `translateX(${offset - 200}px)`;
       row2El.style.transform = `translateX(${-(offset - 200)}px)`;
     };
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
     };
-  }, []);
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [reduce]);
 
   return (
     <section

@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import type { ReactNode } from "react";
+import { useReducedMotion } from "framer-motion";
 
 interface MagnetProps {
   children: ReactNode;
@@ -19,8 +20,10 @@ export default function Magnet({
   className,
 }: MagnetProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (reduce) return;
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -38,6 +41,7 @@ export default function Magnet({
   };
 
   const handleMouseLeave = () => {
+    if (reduce) return;
     const el = ref.current;
     if (!el) return;
     el.style.transition = inactiveTransition;

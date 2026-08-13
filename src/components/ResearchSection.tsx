@@ -5,6 +5,7 @@ export default function ResearchSection() {
   return (
     <section
       id="research"
+      aria-label="研究"
       className="bg-white rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32"
     >
       <FadeIn delay={0} y={40}>
@@ -12,7 +13,7 @@ export default function ResearchSection() {
           研究
         </h2>
       </FadeIn>
-      <p className="text-center text-[#0C0C0C]/50 font-light tracking-[0.3em] uppercase text-xs sm:text-sm mb-14 sm:mb-20">
+      <p className="text-center text-[#3A3F47] font-light tracking-[0.3em] uppercase text-xs sm:text-sm mb-14 sm:mb-20">
         Research · Publication
       </p>
 
@@ -31,7 +32,7 @@ export default function ResearchSection() {
             {research.title}
           </h3>
 
-          <div className="text-[#0C0C0C]/60 text-[clamp(0.85rem,1.6vw,1.05rem)] mb-8">
+          <div className="text-[#3A3F47] text-[clamp(0.85rem,1.6vw,1.05rem)] mb-8">
             模型方法：<span className="font-semibold text-[#0C0C0C]">{research.models}</span>
           </div>
 
@@ -42,7 +43,7 @@ export default function ResearchSection() {
               </div>
               <div className="text-white/60 text-xs mt-2">{research.metric.label}</div>
             </div>
-            <p className="text-[#0C0C0C]/70 leading-relaxed text-[clamp(0.9rem,1.7vw,1.1rem)] flex-1">
+            <p className="text-[#4A4F57] leading-relaxed text-[clamp(0.9rem,1.7vw,1.1rem)] flex-1">
               {research.abstract}
             </p>
           </div>

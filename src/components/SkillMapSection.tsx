@@ -49,6 +49,7 @@ export default function SkillMapSection() {
   return (
     <section
       id="skillmap"
+      aria-label="能力落地"
       className="bg-[#0C0C0C] px-6 md:px-10 py-20 sm:py-24 md:py-28"
     >
       <FadeIn delay={0} y={30}>

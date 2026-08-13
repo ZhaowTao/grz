@@ -5,6 +5,7 @@ export default function EducationSection() {
   return (
     <section
       id="education"
+      aria-label="教育"
       className="bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32"
     >
       <FadeIn delay={0} y={40}>
@@ -12,7 +13,7 @@ export default function EducationSection() {
           教育
         </h2>
       </FadeIn>
-      <p className="text-center text-[#6B7A90] font-light tracking-[0.3em] uppercase text-xs sm:text-sm mb-14 sm:mb-20">
+      <p className="text-center text-[#7E8CA0] font-light tracking-[0.3em] uppercase text-xs sm:text-sm mb-14 sm:mb-20">
         Education
       </p>
 
@@ -32,7 +33,7 @@ export default function EducationSection() {
                 {education.highlight.value}
               </div>
               <div className="text-[#9FB0C3] text-sm mt-1">{education.highlight.unit}</div>
-              <div className="text-[#6B7A90] text-xs mt-1">{education.highlight.note}</div>
+              <div className="text-[#7E8CA0] text-xs mt-1">{education.highlight.note}</div>
             </div>
           </div>
 
@@ -49,7 +50,7 @@ export default function EducationSection() {
             ))}
           </div>
 
-          <div className="text-[#6B7A90] text-sm mt-8">{education.period}</div>
+          <div className="text-[#7E8CA0] text-sm mt-8">{education.period}</div>
         </div>
       </FadeIn>
     </section>

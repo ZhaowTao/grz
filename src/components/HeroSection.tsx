@@ -1,26 +1,34 @@
+import { useState, useEffect } from "react";
 import FadeIn from "./FadeIn";
 import Magnet from "./Magnet";
 import ContactButton from "./ContactButton";
 import { profile, navLinks } from "../data/resume";
 
 export default function HeroSection() {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
     <section
       id="home"
+      aria-label="概览"
       className="relative h-screen min-h-[700px] flex flex-col overflow-x-clip"
     >
-      <FadeIn
-        delay={0}
-        y={-20}
-        className="flex items-center justify-between px-6 md:px-10 pt-6 md:pt-8"
-      >
+      <header className="flex items-center justify-between px-6 md:px-10 pt-6 md:pt-8 relative z-30">
         <a
           href="#home"
           className="font-black uppercase tracking-[0.3em] text-[#D7E2EA] text-lg md:text-xl"
         >
           赵文涛
         </a>
-        <nav className="hidden md:flex flex-1 max-w-[720px] ml-auto justify-between px-4 md:px-8">
+        <nav className="hidden md:flex flex-1 max-w-[720px] ml-auto justify-between px-4 md:px-8" aria-label="主导航">
           {navLinks.map((link) => (
             <a
               key={link.label}
@@ -31,7 +39,35 @@ export default function HeroSection() {
             </a>
           ))}
         </nav>
-      </FadeIn>
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          aria-label={open ? "关闭菜单" : "打开菜单"}
+          onClick={() => setOpen((o) => !o)}
+          className="md:hidden ml-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#22D3EE]/40 bg-[#0B0F1A]/90 text-[#D7E2EA] text-xl shadow-[0_0_0_1px_rgba(34,211,238,0.15)] transition-opacity hover:opacity-80"
+        >
+          {open ? "✕" : "☰"}
+        </button>
+      </header>
+      {open && (
+        <nav
+          id="mobile-nav"
+          aria-label="移动端导航"
+          className="md:hidden flex flex-col gap-1 px-6 mt-3 pb-2 relative z-30"
+        >
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className="text-[#D7E2EA] font-medium py-3 border-b border-[#263043]"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      )}
 
       <div className="flex-1 flex flex-col justify-start items-center relative pt-[6vh] md:pt-[8vh]">
         <h1 className="hero-heading font-black uppercase tracking-tight leading-[0.95] whitespace-nowrap w-full text-center text-[12vw] sm:text-[13vw] md:text-[14vw] lg:text-[15vw]">
@@ -105,7 +141,7 @@ export default function HeroSection() {
         </FadeIn>
         <div className="flex justify-between items-end gap-4">
           <FadeIn delay={0.5} y={20}>
-            <p className="hero-heading font-medium tracking-[0.18em] leading-relaxed text-[clamp(0.65rem,1.15vw,0.95rem)] max-w-[280px] sm:max-w-[380px]">
+            <p className="text-[#9FB0C3] font-medium tracking-[0.18em] leading-relaxed text-[clamp(0.65rem,1.15vw,0.95rem)] max-w-[280px] sm:max-w-[380px]">
               {profile.tagline}
             </p>
           </FadeIn>

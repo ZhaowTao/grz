@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { CSSProperties, ElementType, ReactNode } from "react";
 
 interface FadeInProps {
@@ -22,15 +22,16 @@ export default function FadeIn({
   className,
   style,
 }: FadeInProps) {
+  const reduce = useReducedMotion();
   const MotionTag = motion.create(as as never) as typeof motion.div;
   return (
     <MotionTag
       className={className}
       style={style}
-      initial={{ opacity: 0, x, y }}
+      initial={reduce ? { opacity: 1 } : { opacity: 0, x, y }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, margin: "50px", amount: 0 }}
-      transition={{ delay, duration, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={reduce ? { duration: 0 } : { delay, duration, ease: [0.25, 0.1, 0.25, 1] }}
     >
       {children}
     </MotionTag>

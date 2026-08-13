@@ -42,6 +42,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
+      aria-label="关于我"
       className="min-h-screen relative flex flex-col items-center justify-center bg-[#0C0C0C] px-5 sm:px-8 md:px-10 py-20"
     >
       {DECOR.map((d) => (

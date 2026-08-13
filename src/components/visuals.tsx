@@ -98,7 +98,7 @@ const cardBg = "linear-gradient(145deg,#0E1626 0%,#0A0F1C 100%)";
 function CardFrame({ children, ring }: { children: ReactNode; ring: string }) {
   return (
     <div
-      className="w-[420px] h-[270px] rounded-2xl flex-shrink-0 overflow-hidden relative"
+      className="w-[280px] sm:w-[360px] lg:w-[420px] h-[230px] sm:h-[250px] lg:h-[270px] rounded-2xl flex-shrink-0 overflow-hidden relative"
       style={{ background: cardBg, boxShadow: `inset 0 0 0 1px ${ring}` }}
     >
       {children}
@@ -291,7 +291,7 @@ export function SkillCard({
 }) {
   return (
     <div
-      className="w-[420px] h-[280px] rounded-2xl flex-shrink-0 overflow-hidden relative p-6 flex flex-col"
+      className="w-[280px] sm:w-[360px] lg:w-[420px] h-[250px] sm:h-[265px] lg:h-[280px] rounded-2xl flex-shrink-0 overflow-hidden relative p-6 flex flex-col"
       style={{ background: SKILL_CARD_BG, boxShadow: `inset 0 0 0 1px ${accent}55` }}
     >
       <div className="absolute left-0 top-0 h-full w-[3px]" style={{ background: accent }} />

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import FadeIn from "./FadeIn";
 import { ProjectMockup } from "./visuals";
 import { projects } from "../data/resume";
@@ -45,8 +45,10 @@ function ProjectCard({
     target: containerRef,
     offset: ["start start", "end 0"],
   });
+  const reduce = useReducedMotion();
   const targetScale = 1 - (totalCards - 1 - index) * 0.03;
-  const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
+  const scrollScale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
+  const scale = reduce ? 1 : scrollScale;
 
   return (
     <div ref={containerRef} className="h-[85vh]">
@@ -69,11 +71,22 @@ function ProjectCard({
               </div>
               {project.cta ? (
                 <div className="text-right">
-                  <span className="inline-flex items-center gap-2 rounded-full border-2 border-[#D7E2EA] px-5 py-2.5 text-[#D7E2EA] text-xs sm:text-sm font-semibold">
-                    {project.cta.label}
-                  </span>
+                  {project.cta.href ? (
+                    <a
+                      href={project.cta.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border-2 border-[#D7E2EA] px-5 py-2.5 text-[#D7E2EA] text-xs sm:text-sm font-semibold transition-opacity hover:opacity-80"
+                    >
+                      {project.cta.label}
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center gap-2 rounded-full border-2 border-[#D7E2EA] px-5 py-2.5 text-[#D7E2EA] text-xs sm:text-sm font-semibold">
+                      {project.cta.label}
+                    </span>
+                  )}
                   {project.cta.note && (
-                    <div className="mt-2 text-[#6B7A90] text-[0.7rem] sm:text-[0.78rem]">
+                    <div className="mt-2 text-[#7E8CA0] text-[0.7rem] sm:text-[0.78rem]">
                       {project.cta.note}
                     </div>
                   )}
@@ -86,7 +99,7 @@ function ProjectCard({
             <h3 className="text-[#D7E2EA] font-black tracking-tight text-[clamp(1.2rem,2.6vw,2.2rem)] mb-2">
               {project.title}
             </h3>
-            <p className="text-[#6B7A90] text-[clamp(0.8rem,1.5vw,1rem)] mb-6">
+            <p className="text-[#7E8CA0] text-[clamp(0.8rem,1.5vw,1rem)] mb-6">
               {project.role} · {project.period}
             </p>
 
@@ -103,7 +116,7 @@ function ProjectCard({
                       <div className="hero-heading font-black text-[clamp(1rem,2.4vw,1.8rem)] leading-none">
                         {m.value}
                       </div>
-                      <div className="text-[#6B7A90] text-[0.65rem] sm:text-[0.72rem] mt-2 leading-snug">
+                      <div className="text-[#7E8CA0] text-[0.65rem] sm:text-[0.72rem] mt-2 leading-snug">
                         {m.label}
                       </div>
                     </div>

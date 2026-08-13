@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <div style={{ overflowX: "clip" }}>
+    <main style={{ overflowX: "clip" }}>
       <HeroSection />
       <AboutSection />
       <MarqueeSection />
@@ -22,6 +22,6 @@ export default function App() {
       <AwardsSection />
       <EducationSection />
       <Footer />
-    </div>
+    </main>
   );
 }

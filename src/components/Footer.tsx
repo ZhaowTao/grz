@@ -13,6 +13,7 @@ export default function Footer() {
   return (
     <footer
       id="contact"
+      aria-label="联系"
       className="bg-[#0C0C0C] px-5 sm:px-8 md:px-10 pt-24 sm:pt-28 md:pt-36 pb-12"
     >
       <FadeIn delay={0} y={40}>
@@ -50,7 +51,7 @@ export default function Footer() {
         })}
       </div>
 
-      <div className="text-center text-[#6B7A90] text-xs mt-16">
+      <div className="text-center text-[#7E8CA0] text-xs mt-16">
         © 2026 赵文涛 · 数据分析师 / AI 应用开发工程师 · 青岛
       </div>
     </footer>

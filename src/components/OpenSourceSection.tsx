@@ -5,6 +5,7 @@ export default function OpenSourceSection() {
   return (
     <section
       id="opensource"
+      aria-label="开源"
       className="bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32"
     >
       <FadeIn delay={0} y={40}>
@@ -12,7 +13,7 @@ export default function OpenSourceSection() {
           开源
         </h2>
       </FadeIn>
-      <p className="text-center text-[#6B7A90] font-light tracking-[0.3em] uppercase text-xs sm:text-sm mb-14 sm:mb-20">
+      <p className="text-center text-[#7E8CA0] font-light tracking-[0.3em] uppercase text-xs sm:text-sm mb-14 sm:mb-20">
         Open Source
       </p>
 
@@ -37,7 +38,7 @@ export default function OpenSourceSection() {
                 {repo.desc}
               </p>
               <div className="flex items-center gap-2 text-[#22D3EE] text-sm font-medium">
-                ★ {repo.stars} <span className="text-[#6B7A90]">· 在 GitHub 查看</span>
+                ★ {repo.stars} <span className="text-[#7E8CA0]">· 在 GitHub 查看</span>
               </div>
             </a>
           </FadeIn>
