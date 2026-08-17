@@ -11,13 +11,13 @@ export const profile = {
     birth: "2004.01",
   },
   stats: [
-    { value: "12,101", label: "小程序上架近一个月累计用户" },
+    { value: "12,568", label: "小程序上架近一个月累计用户" },
     { value: "4.01", label: "GPA / 5.0 · 专业前 2.3%" },
     { value: "0.884", label: "薪资预测模型 R² · MAE 1,453 元" },
     { value: "IEEE", label: "ICIPCA 2025 论文第一作者" },
   ],
   about:
-    "数据科学与大数据技术 2026 届应届毕业生，专业前 2.3%，GPA 4.01/5.0。专注数据分析建模与 AI 应用开发——既能用回归、集成学习回答业务问题，也喜欢把想法做成真实可用的产品。从 0 到 1 上线的 AI 小程序已服务 12,101 名用户，并以第一作者身份在 IEEE ICIPCA 2025 发表学术论文。让我们一起，把数据变成产品。",
+    "数据科学与大数据技术 2026 届应届毕业生，专业前 2.3%，GPA 4.01/5.0。专注数据分析建模与 AI 应用开发——既能用回归、集成学习回答业务问题，也喜欢把想法做成真实可用的产品。从 0 到 1 上线的 AI 小程序已服务 12,568 名用户，并以第一作者身份在 IEEE ICIPCA 2025 发表学术论文。让我们一起，把数据变成产品。",
 };
 
 export const skills = [
@@ -76,29 +76,31 @@ export interface Project {
   accent: string; // tailwind gradient classes
   mockup: "mbti" | "salary" | "medical";
   cta?: { label: string; note?: string; href?: string };
+  github?: string;
 }
 
 export const projects: Project[] = [
   {
     no: "01",
     title: "人森梦 — AI 名人 MBTI 性格探索小程序",
-    status: "已上线 · 12,101 用户",
+    status: "已上线 · 12,568 用户",
     role: "产品设计 & 独立开发",
     period: "2026.06",
     stack: ["微信小程序", "微信云开发", "DeepSeek API", "AI 审核系统", "Canvas 2D"],
     points: [
-      "3 天从 0 到 1 完成产品设计、开发、上线全流程；上架近一个月累计用户 12,101，上线一周即达 4,056，日均新增 580+，搜索流量占比 89%，快速验证 PMF；两周内迭代至 v1.2.0",
+      "3 天从 0 到 1 完成产品设计、开发、上线全流程；上架近一个月累计用户 12,568，上线一周即达 4,056，日均新增 580+，搜索流量占比 89%，快速验证 PMF；两周内迭代至 v1.2.0",
       "集成 DeepSeek API 实现 AI 性格分析，设计三层输出质量控制系统（Schema 校验 + 白名单 + 规则过滤），引入百度百科事实锚点降低幻觉，自研 MBTI → 游戏八维性格跨体系语义对齐算法",
       "搭建 AI 自动化审核系统，对用户贡献角色进行 AI 审核 + 智能修改，大幅降低人工审核成本；配套金币激励体系（签到 / 分享 / 广告 / 共创）驱动用户增长与留存",
     ],
     metrics: [
-      { value: "12,101", label: "上架近一个月累计用户" },
+      { value: "12,568", label: "上架近一个月累计用户" },
       { value: "580+", label: "日均新增" },
       { value: "89%", label: "搜索流量占比" },
     ],
     accent: "from-fuchsia-500 via-pink-500 to-orange-400",
     mockup: "mbti",
-    cta: { label: "微信搜『人森梦』体验", note: "小程序已上线 · 12,101 用户在用", href: "https://weixin.sogou.com/weixin?type=public&query=人森梦" },
+    cta: { label: "微信扫码体验", note: "小程序已上线 · 12,568 用户在用" },
+    github: "https://github.com/ZhaowTao/rensendream-showcase",
   },
   {
     no: "02",
@@ -119,6 +121,7 @@ export const projects: Project[] = [
     ],
     accent: "from-cyan-400 via-sky-500 to-blue-600",
     mockup: "salary",
+    github: "https://github.com/ZhaowTao/salary-prediction-showcase",
   },
   {
     no: "03",
