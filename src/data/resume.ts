@@ -141,6 +141,7 @@ export const projects: Project[] = [
     ],
     accent: "from-emerald-400 via-teal-500 to-cyan-600",
     mockup: "medical",
+    github: "https://github.com/ZhaowTao/breast-cancer-showcase",
   },
 ];
 
